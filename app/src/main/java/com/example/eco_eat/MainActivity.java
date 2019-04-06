@@ -7,6 +7,7 @@ import android.os.Vibrator;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -17,7 +18,13 @@ import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 
+import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
+import static com.example.eco_eat.Algo.*;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,6 +36,25 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //StringBuffer sbuffer = new StringBuffer();
+        InputStream is1 = this.getResources().openRawResource(R.raw.s1);
+        InputStream is2 = this.getResources().openRawResource(R.raw.s2);
+
+        java.io.BufferedReader in1 = new BufferedReader(new InputStreamReader(is1));
+        java.io.BufferedReader in2 = new BufferedReader(new InputStreamReader(is2));
+
+
+        try{Algo.init(in1, in2);}
+        catch (IOException e){
+            Log.d("What ever", e.getMessage());
+        }
+        //File currentDirFile = new File(".");
+        //String x = currentDirFile.getAbsolutePath();
+        //Log.d("Whatever", x);
+
+
+
         setContentView(R.layout.activity_main);
         surfaceView = (SurfaceView)findViewById(R.id.camerapreview);
         textView = (TextView)findViewById(R.id.textView);
@@ -78,7 +104,9 @@ public class MainActivity extends AppCompatActivity {
                         public void run(){
                             Vibrator vibrator = (Vibrator)getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
                             vibrator.vibrate(1000);
-                            textView.setText(qrCodes.valueAt(0).displayValue);
+                            textView.setText(find("3095757645106"));
+                            //textView.setText(qrCodes.valueAt(0).displayValue);
+
                         }
                     });
                 }
