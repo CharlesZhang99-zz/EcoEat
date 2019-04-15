@@ -21,7 +21,7 @@ public class Algo {
     public static ArrayList<classificator> dataset_2 = new ArrayList<>();
 	private static HashSet<Integer> d2;
 	public static BinTree tree = new BinTree();
-	
+
 	private static void build_tree(){
 		for (int i = 0; i < dataset_1.size(); i++){
 			tree.add(dataset_1.get(i));
@@ -36,40 +36,40 @@ public class Algo {
     	}
     	return -1;
     }
-    
+
 	public static void sort (  ArrayList<Data> x ) {
 		qSort2(x, 0, x.size()-1);
 	}
-	
+
 	private static void swap (ArrayList<Data> x, int l, int r) {
 		Data t = x.get(l);
 		x.set(l, x.get(r));
 		x.set(r, t);
 	}
-	
+
 	private static void qSort2 ( ArrayList<Data> x, int l, int r ) {
-        if (l < r) { 
-            int pi = partition2(x, l, r); 
-            qSort2(x, l, pi-1); 
-            qSort2(x, pi+1, r); 
-        } 
+        if (l < r) {
+            int pi = partition2(x, l, r);
+            qSort2(x, l, pi-1);
+            qSort2(x, pi+1, r);
+        }
 	}
-	
+
 	private static int partition2 (ArrayList<Data> x, int l, int r) {
 		int randomNum = ThreadLocalRandom.current().nextInt(l, r);
 		int i = l-1;
 		Data v = x.get(randomNum);
 		swap(x, randomNum, r);
         for (int j = l; j < r; j++) {
-            if (!x.get(j).compare_to(v)) { 
+            if (!x.get(j).compare_to(v)) {
             	i++;
             	swap(x, i, j);
-            } 
-        }  
+            }
+        }
         swap(x, i+1, r);
-        return i+1; 
+        return i+1;
 	}
-	
+
 	private static boolean weak_compare(String s1, String s2) {
 		char[] ss1 = s1.toUpperCase().toCharArray();
 		char[] ss2 = s2.toUpperCase().toCharArray();
@@ -84,7 +84,7 @@ public class Algo {
 		}
 		return false;
 	}
-	
+
 	private static int min(int length, int length2) {
 		if (length < length2) {
 			return length;
@@ -102,10 +102,10 @@ public class Algo {
 		}
 		return -1;
 	}
-	
+
 	//Function for find
 	public static String find(String id) {
-		Data search_key = new Data("junk value", id, "dont have time to make it pretty");
+        Data search_key = new Data(id, "junk value" , "dont have time to make it pretty");
 		Data res = tree.containsNode(search_key);
 		if (res.equal_to(new Data("no result", "very", "sad"))){
 			return "404 Error";
@@ -241,7 +241,7 @@ public class Algo {
             dataset_2.set(k, dataset_2.get(k).insert(n, gps, cps));
         }
         sort(dataset_1);
-        //build_tree();
+        tree.root = tree.build_tree(dataset_1, 0, dataset_1.size()-1);
     }
 
 }

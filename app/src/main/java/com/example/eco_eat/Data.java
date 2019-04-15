@@ -27,7 +27,7 @@ public class Data {
     	return false;
     }
     public boolean equal_to(Data d){
-    	if (key.compareTo(d.key) == 0) {
+    	if (key.equals(d.key)) {
     		return true;
     	}
     	return false;
