@@ -5,9 +5,9 @@ public class Node{
 	public static Node left;
 	public static Node right;
 	
-	public static Node(Data d){
+	public Node(Data d){
 		this.value = d;
-		this.left = null;
-		this.right = null;
+		left = null;
+		right = null;
 	}
 }

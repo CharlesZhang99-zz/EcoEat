@@ -13,17 +13,17 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 
-import javax.xml.crypto.Data;
+//import javax.xml.crypto.Data;
 
 
 public class Algo {
     public static ArrayList<Data> dataset_1 = new ArrayList<>();
     public static ArrayList<classificator> dataset_2 = new ArrayList<>();
 	private static HashSet<Integer> d2;
-	public static BinTree tree;
+	public static BinTree tree = new BinTree();
 	
 	private static void build_tree(){
-		for (int i = 0; i < dataset1.length(); i++){
+		for (int i = 0; i < dataset_1.size(); i++){
 			tree.add(dataset_1.get(i));
 		}
 	}
@@ -105,9 +105,9 @@ public class Algo {
 	
 	//Function for find
 	public static String find(String id) {
-		Data serach_key = new Data("junk value", id, "dont have time to make it pretty");
+		Data search_key = new Data("junk value", id, "dont have time to make it pretty");
 		Data res = tree.containsNode(search_key);
-		if (res.equals_to(new Data("no result", "very", "sad"))){
+		if (res.equal_to(new Data("no result", "very", "sad"))){
 			return "404 Error";
 		}
 		d2 = new HashSet<>();
@@ -241,7 +241,7 @@ public class Algo {
             dataset_2.set(k, dataset_2.get(k).insert(n, gps, cps));
         }
         sort(dataset_1);
-        build_tree();
+        //build_tree();
     }
 
 }

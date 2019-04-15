@@ -14,8 +14,9 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class BinTree{
-	public Node root;
-	private static Data addRecurcive(Node current, Data value){
+	public static Node root;
+
+	private static Node addRecursive(Node current, Data value){
 		if (current == null){
 			return new Node(value);
 		}
@@ -31,17 +32,15 @@ public class BinTree{
 		root = addRecursive(root, value);
 	}
 	private static Data containsNodeRecursive(Node current, Data value) {
-		    if (current == null) {
-		        return new Data("no result", "very", "sad");
-		    } 
-		    if (value.equal_to(current.value)) {
-		        return value;
-		    } 
-		    return current.value.compare_to(value)
-		      ? containsNodeRecursive(current.left, value)
-		      : containsNodeRecursive(current.right, value);
+		if (current == null){
+			return new Data("no result", "very", "sad");
+		}
+		if (value.equal_to(current.value)){
+			return value;
+		}
+		return current.value.compare_to(value) ? containsNodeRecursive(current.left, value) : containsNodeRecursive(current.right, value);
 	}
-	public static boolean containsNode(Data value) {
+	public static Data containsNode(Data value) {
 	    return containsNodeRecursive(root, value);
 	}
 }

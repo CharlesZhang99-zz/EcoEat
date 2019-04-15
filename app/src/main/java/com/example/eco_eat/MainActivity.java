@@ -104,8 +104,7 @@ public class MainActivity extends AppCompatActivity {
                         public void run(){
                             Vibrator vibrator = (Vibrator)getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
                             vibrator.vibrate(1000);
-                            textView.setText(find("3095757645106"));
-                            //textView.setText(qrCodes.valueAt(0).displayValue);
+                            textView.setText(find(qrCodes.valueAt(0).displayValue));
 
                         }
                     });
